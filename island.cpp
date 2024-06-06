@@ -15,7 +15,7 @@ void Island::fractal_recursive(cgp::mesh& m, int i, int j, int N_s, float height
 		for (int k = 0; k < N_s; k++) {
 			m.position[N_s*med + k] = {(m.position[N_s*i+k].x + m.position[N_s*j+k].x) / 2.0f, (m.position[N_s*i+k].y + m.position[N_s*j+k].y) / 2.0f, (m.position[N_s*i+k].z + m.position[N_s*j+k].z) / 2.0f + std::fmax((-m.position[N_s * i + k].z + m.position[N_s * j + k].z) *(rand() - max_ran / 2.0f)/(1.5f*max_ran), 0) };
 		}
-		std::cout << "tour fractal " << i << "," << med << "," << j << std::endl;
+		//std::cout << "tour fractal " << i << "," << med << "," << j << std::endl;
 		fractal_recursive(m, i, med, N_s, height);
 		fractal_recursive(m, med, j, N_s, height);
 	}
@@ -144,3 +144,7 @@ void Island::fractal_cone_adaptation(cgp::mesh& cone, cgp::mesh top_terrain, int
 	}
 
 } 
+
+//Généralement je prends height = 5, radius=4, Ns=60, Nf=10
+//Et il faut juste appliquer une rotation de Pi sur l’axe (1,0,0) à la partie du bas (fractale)
+
